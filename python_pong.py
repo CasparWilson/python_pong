@@ -11,6 +11,7 @@ run = True
 #colours
 ORANGE = (255, 165, 0)
 BLUE = (0, 0, 255)
+BLACK = (0, 0, 0,)
 
 #for the ball
 radius = 15
@@ -24,6 +25,7 @@ left_paddle_x, right_paddle_x = 100 - paddle_width/2, WIDTH -(100 - paddle_width
 
 #Main Loop
 while run:
+    wn.fill(BLACK)
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             run = False
