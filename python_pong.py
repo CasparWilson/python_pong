@@ -13,7 +13,7 @@ ORANGE = (255, 165, 0)
 
 #for the ball
 radius = 15
-ball_x, balll_y = WIDTH/2 - radius, HEIGHT/2 - radius
+ball_x, ball_y = WIDTH/2 - radius, HEIGHT/2 - radius
 
 #Main Loop
 while run:
