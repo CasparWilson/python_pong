@@ -33,8 +33,13 @@ while run:
     #ball's movement boundary
     if ball_y <= 0 + radius or ball_y >= HEIGHT - radius:
         ball_vel_y *= -1
-    if ball_x <= 0 + radius or ball_x >= WIDTH - radius:
+    if ball_x >= WIDTH - radius:
+        ball_x, ball_y = WIDTH/2 - radius, HEIGHT/2 - radius
         ball_vel_x *= -1
+        ball_vel_y *= -1
+    if ball_x <= 0 + radius:
+        ball_x, ball_y = WIDTH/2 - radius, HEIGHT/2 - radius
+        ball_vel_x, ball_vel_y = 0.2, 0.2
 
     #movements
     ball_x += ball_vel_x
