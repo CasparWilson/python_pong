@@ -15,6 +15,7 @@ BLUE = (0, 0, 255)
 #for the ball
 radius = 15
 ball_x, ball_y = WIDTH/2 - radius, HEIGHT/2 - radius
+ball_vel_x, ball_vel_y = 1, 1
 
 #paddle dimensions
 paddle_width, paddle_height = 20,120
@@ -26,7 +27,11 @@ while run:
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             run = False
+    #movements
+    ball_x += ball_vel_x
+    ball_y += ball_vel_y
 
+    #OBJECTS
     pygame.draw.circle(wn, ORANGE, (ball_x, ball_y), radius)
     pygame.draw.rect(wn, BLUE, pygame.Rect(left_paddle_x, left_paddle_y, paddle_width, paddle_height))
     pygame.draw.rect(wn, BLUE, pygame.Rect(right_paddle_x, right_paddle_y, paddle_width, paddle_height))
