@@ -32,13 +32,13 @@ while run:
             run = False
         elif i.type == pygame.KEYDOWN:
             if i.key == pygame.K_UP:
-                right_paddle_vel = -0.3
+                right_paddle_vel = -0.5
             if i.key == pygame.K_DOWN:
-                right_paddle_vel = 0.3
+                right_paddle_vel = 0.5
             if i.key == pygame.K_w:
-                left_paddle_vel = -0.3
+                left_paddle_vel = -0.5
             if i.key == pygame.K_s:
-                left_paddle_vel = 0.3
+                left_paddle_vel = 0.5
         if i.type == pygame.KEYUP:
             right_paddle_vel = 0
             left_paddle_vel = 0
@@ -61,6 +61,16 @@ while run:
     ball_y += ball_vel_y
     right_paddle_y += right_paddle_vel
     left_paddle_y += left_paddle_vel
+
+    #paddle boundaries
+    if right_paddle_y > HEIGHT - paddle_height:
+        right_paddle_y = HEIGHT - paddle_height
+    if right_paddle_y < 0:
+        right_paddle_y = 0
+    if left_paddle_y > HEIGHT - paddle_height:
+        left_paddle_y = HEIGHT - paddle_height
+    if left_paddle_y < 0:
+        left_paddle_y = 0
 
     #OBJECTS
     pygame.draw.circle(wn, ORANGE, (ball_x, ball_y), radius)
