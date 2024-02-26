@@ -7,6 +7,7 @@ WIDTH, HEIGHT= 1000, 600
 wn = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Python_Pong")
 run = True
+player_1 = player_2 = 0
 
 #colours
 ORANGE = (255, 165, 0)
@@ -50,11 +51,12 @@ while run:
         ball_vel_y *= -1
     if ball_x >= WIDTH - radius:
         ball_x, ball_y = WIDTH/2 - radius, HEIGHT/2 - radius
-        ball_vel_x *= -1
-        ball_vel_y *= -1
+        ball_vel_x, ball_vel_y = -0.2, -0.2
+        player_1 += 1
     if ball_x <= 0 + radius:
         ball_x, ball_y = WIDTH/2 - radius, HEIGHT/2 - radius
         ball_vel_x, ball_vel_y = 0.2, 0.2
+        player_2 += 1
 
     #movements
     ball_x += ball_vel_x
@@ -77,6 +79,13 @@ while run:
         ball_vel_x *= -1.2
     if (left_paddle_x + paddle_width >= ball_x - radius > left_paddle_x and left_paddle_y <= ball_y <= left_paddle_y + paddle_height):
         ball_vel_x *= -1.2
+
+    #scoreboard
+        font = pygame.font.SysFont('callibri', 32)
+        score_1 = font.render("Player_1:" + str(player_1), True, ORANGE)
+        wn.blit(score_1, (25, 25))
+        score_2 = font.render("Player_2:" + str(player_2), True, ORANGE)
+        wn.blit(score_2, (825, 25))
 
     #OBJECTS
     pygame.draw.circle(wn, ORANGE, (ball_x, ball_y), radius)
