@@ -72,6 +72,12 @@ while run:
     if left_paddle_y < 0:
         left_paddle_y = 0
 
+    #collision
+    if (right_paddle_x <= ball_x + radius <= right_paddle_x + paddle_width and right_paddle_y <= ball_y <= right_paddle_y + paddle_height):
+        ball_vel_x *= -1.2
+    if (left_paddle_x + paddle_width >= ball_x - radius > left_paddle_x and left_paddle_y <= ball_y <= left_paddle_y + paddle_height):
+        ball_vel_x *= -1.2
+
     #OBJECTS
     pygame.draw.circle(wn, ORANGE, (ball_x, ball_y), radius)
     pygame.draw.rect(wn, BLUE, pygame.Rect(left_paddle_x, left_paddle_y, paddle_width, paddle_height))
