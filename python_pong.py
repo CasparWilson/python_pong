@@ -17,7 +17,8 @@ BLACK = (0, 0, 0,)
 #for the ball
 radius = 15
 ball_x, ball_y = WIDTH/2 - radius, HEIGHT/2 - radius
-ball_vel_x, ball_vel_y = 0.2, 0.2
+ball_vel_x = ball_vel_y = 0.2
+
 
 #paddle dimensions
 paddle_width, paddle_height = 20,120
@@ -75,10 +76,18 @@ while run:
         left_paddle_y = 0
 
     #collision
-    if (right_paddle_x <= ball_x + radius <= right_paddle_x + paddle_width and right_paddle_y <= ball_y <= right_paddle_y + paddle_height):
-        ball_vel_x *= -1.2
-    if (left_paddle_x + paddle_width >= ball_x - radius > left_paddle_x and left_paddle_y <= ball_y <= left_paddle_y + paddle_height):
-        ball_vel_x *= -1.2
+    if right_paddle_x <= ball_x + radius <= right_paddle_x + paddle_width:
+        if right_paddle_y + radius <= ball_y <= right_paddle_y + paddle_height - radius:
+            ball_vel_x *= -1.2
+        elif right_paddle_y - radius < ball_y <= right_paddle_y + radius or right_paddle_y + paddle_height - radius < ball_y <= right_paddle_y + paddle_height + radius:
+            ball_vel_x *= -1
+            ball_vel_y *= 1.2
+    if left_paddle_x + paddle_width >= ball_x - radius > left_paddle_x:
+        if left_paddle_y + radius <= ball_y <= left_paddle_y + paddle_height - radius:
+            ball_vel_x *= -1.2
+        elif left_paddle_y - radius < ball_y <= left_paddle_y + radius or left_paddle_y + paddle_height - radius < ball_y <= left_paddle_y + paddle_height + radius:
+            ball_vel_x *= -1
+            ball_vel_y *= 1.2
 
     #scoreboard
         font = pygame.font.SysFont('callibri', 32)
